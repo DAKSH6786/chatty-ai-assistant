@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>utils.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #008080; font-weight: bold;}
+.s3 { color: #0037a6;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+utils.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">re</span>
+<span class="s0">import </span><span class="s1">os</span>
+<span class="s0">import </span><span class="s1">random</span>
+
+
+
+<span class="s0">class </span><span class="s1">Utils:</span>
+    <span class="s0">def </span><span class="s1">__init__(self,logger):</span>
+        <span class="s1">self.logger = logger</span>
+
+        <span class="s1">@staticmethod</span>
+        <span class="s0">def </span><span class="s1">normalize_utterances(self,utterances):</span>
+          <span class="s1">normalized = </span><span class="s2">''</span>
+          <span class="s0">for </span><span class="s1">u </span><span class="s0">in </span><span class="s1">utterances:</span>
+            <span class="s1">u = re.sub(</span><span class="s2">'</span><span class="s3">\\</span><span class="s2">W+'</span><span class="s1">,</span><span class="s2">''</span><span class="s1">,u)</span>
+            <span class="s1">normalized += u.lower().strip() + </span><span class="s2">&quot;|&quot;</span>
+
+          <span class="s0">return </span><span class="s1">normalized[:-</span><span class="s4">1</span><span class="s1">]</span>
+
+    <span class="s1">@staticmethod</span>
+    <span class="s0">def </span><span class="s1">match_pattern(voice_note,pattern):</span>
+            <span class="s1">data = Utils.normalize_utterances(pattern)</span>
+            <span class="s1">compiled = re.compile(data)</span>
+            <span class="s1">value = compiled.search(voice_note)</span>
+            <span class="s0">if </span><span class="s1">value:</span>
+                <span class="s0">return True</span>
+            <span class="s0">else</span><span class="s1">:</span>
+                <span class="s0">False</span>
+
+    <span class="s1">@staticmethod</span>
+    <span class="s0">def </span><span class="s1">choose_random(response):</span>
+        <span class="s0">return </span><span class="s1">random.choice(response)</span>
+
+    <span class="s1">@staticmethod</span>
+    <span class="s0">def </span><span class="s1">playsound(response):</span>
+          <span class="s1">os.system(</span><span class="s2">' say&quot;{}&quot; '</span><span class="s1">.format(response))</span></pre>
+</body>
+</html>

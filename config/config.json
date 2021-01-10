@@ -1,0 +1,14 @@
+{
+  "intent_greeting": {
+    "utterances": [
+      "chatty",
+      "wake up chatty",
+      "hello chatty"
+    ],
+    "response": [
+      "yes sir",
+      "yes sir i am awake now, at your service",
+      "hello sir"
+    ]
+  }
+}
